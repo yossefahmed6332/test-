@@ -156,8 +156,8 @@
     <!-- الصورة العائمة على اليمين -->
     <img src="https://i.imgur.com/t5T80ii.png" alt="صورة عائمة" class="floating-image">
 
-    <!-- الصورة على اليسار مع تأثير التشظي -->
-    <canvas id="canvas"></canvas>
+    <!-- الصورة على اليسار -->
+    <img src="https://i.postimg.cc/vT56FHZ8/photo-2025-01-19-00-37-46-removebg-preview.png" alt="صورة على اليسار" style="position: absolute; top: 20%; left: 10%; width: 200px; height: auto;">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
@@ -166,68 +166,10 @@
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById('canvas').appendChild(renderer.domElement);
-
-        // تحميل الصورة
-        const textureLoader = new THREE.TextureLoader();
-        const texture = textureLoader.load('https://i.postimg.cc/vT56FHZ8/photo-2025-01-19-00-37-46-removebg-preview.png');
-
-        // إنشاء شبكة من الأجزاء
-        const geometry = new THREE.PlaneGeometry(5, 5, 20, 20); // تقسيم الصورة إلى أجزاء صغيرة
-        const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
-        const plane = new THREE.Mesh(geometry, material);
-        scene.add(plane);
-
-        // تحريك الصورة إلى أقصى اليسار
-        plane.position.x = -3; // تم تحريك الصورة ناحية اليسار بشكل أكبر
+        document.body.appendChild(renderer.domElement);
 
         // إعداد الكاميرا
         camera.position.z = 5;
-
-        // تفاعل الماوس
-        const raycaster = new THREE.Raycaster();
-        const mouse = new THREE.Vector2();
-
-        // إضافة تأثير التشظي
-        const vertices = plane.geometry.attributes.position.array;
-        const originalPositions = [...vertices]; // حفظ المواضع الأصلية
-
-        document.addEventListener('mousemove', (event) => {
-            // تحويل إحداثيات الماوس إلى إحداثيات Three.js
-            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-            // تحديث Raycaster
-            raycaster.setFromCamera(mouse, camera);
-
-            // التحقق من الاصطدام
-            const intersects = raycaster.intersectObject(plane);
-            if (intersects.length > 0) {
-                const point = intersects[0].point;
-
-                // تحريك الأجزاء القريبة من الماوس
-                for (let i = 0; i < vertices.length; i += 3) {
-                    const vertex = new THREE.Vector3(vertices[i], vertices[i + 1], vertices[i + 2]);
-                    const distance = point.distanceTo(vertex);
-
-                    // إذا كانت المسافة أقل من 0.5، قم بتحريك الجزء
-                    if (distance < 0.5) {
-                        vertices[i + 2] = Math.random() * 0.5; // تحريك المحور Z
-                        vertices[i] += (Math.random() - 0.5) * 0.2; // تحريك المحور X
-                        vertices[i + 1] += (Math.random() - 0.5) * 0.2; // تحريك المحور Y
-                    }
-                }
-                plane.geometry.attributes.position.needsUpdate = true;
-            }
-        });
-
-        // إعادة الصورة إلى وضعها الطبيعي عند إزالة الماوس
-        document.addEventListener('mouseleave', () => {
-            for (let i = 0; i < vertices.length; i++) {
-                vertices[i] = originalPositions[i]; // إعادة الأجزاء إلى مواضعها الأصلية
-            }
-            plane.geometry.attributes.position.needsUpdate = true;
-        });
 
         // عرض المشهد
         function animate() {
