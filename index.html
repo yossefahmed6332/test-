@@ -171,6 +171,174 @@
         const texture = textureLoader.load('https://i.postimg.cc/vT56FHZ8/photo-2025-01-19-00-37-46-removebg-preview.png');
 
         // إنشاء شبكة من الأجزاء
+        const geometry = new THREE.PlaneGeometry(5.5, 5.5, 20, 20); // زيادة الحجم بنسبة 10%
+        const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
+        const plane = new THREE.Mesh(geometry, material);
+        scene.add(plane);
+
+        // تحريك الصورة إلى أقصى اليسار
+        plane.position.x = -3.5; // تم تحريك الصورة ناحية اليسار بشكل أكبر
+
+        // إعداد الكاميرا
+        camera.position.z = 5;
+
+        // تفاعل الماوس
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+
+        document.addEventListener('mousemove', (event) => {
+            // تحويل إحداثيات الماوس إلى إحداثيات Three.js
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            // تحديث Raycaster
+            raycaster.setFromCamera(mouse, camera);
+
+            // التحقق من الاصطدام
+            const intersects = raycaster.intersectObject(plane);
+            if (intersects.length > 0) {
+                const point = intersects[0].point;
+                const vertices = plane.geometry.attributes.position.array;
+
+                // تحريك الأجزاء القريبة من الماوس
+                for (let i = 0; i < vertices.length; i += 3) {
+                    const vertex = new THREE.Vector3(vertices[i], vertices[i + 1], vertices[i + 2]);
+                    const distance = point.distanceTo(vertex);
+                    if (distance < 0.5) {
+                        vertices[i + 2] = Math.random() * 0.5; // تحريك المحور Z
+                    }
+                }
+                plane.geometry.attributes.position.needsUpdate = true;
+            }
+        });
+
+        // إعادة الصورة إلى وضعها الطبيعي عند إزالة الماوس
+        document.addEventListener('mouseleave', () => {
+            const vertices = plane.geometry.attributes.position.array;
+            for (let i = 0; i < vertices.length; i += 3) {
+                vertices[i + 2] = 0; // إعادة المحور Z إلى 0
+            }
+            plane.geometry.attributes.position.needsUpdate = true;
+        });
+
+        // عرض المشهد
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+</body>
+</html>
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-right: 20px;
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .floating-image {
+            position: absolute;
+            width: 100px;
+            height: auto;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        .floating-image {
+            top: calc(40% - 70px);
+            left: calc(86% - 220px);
+            transform: scale(6.5);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .right-box, .left-box {
+            position: absolute;
+            width: 150px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            opacity: 0;
+            transform: scale(0);
+            animation: popIn 2s ease-in-out forwards, pulse 3s infinite ease-in-out 2s;
+        }
+
+        .right-box {
+            top: calc(40% + 200px);
+            left: 50%;
+            background-color: #001a33;
+            transform: translateX(-50%) scale(0);
+        }
+
+        .left-box {
+            top: calc(40% + 200px);
+            right: calc(10% + 200px);
+            background-color: #ab4010;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="right-line"></div>
+    <div class="bottom-line">
+        <span class="contact-text">Contact Us</span>
+        <img src="https://i.imgur.com/FQIZncU.png" alt="Icon 1" class="icon">
+        <img src="https://i.imgur.com/11iledh.png" alt="Icon 2" class="icon">
+        <img src="https://i.imgur.com/QRsal5x.png" alt="Icon 3" class="icon">
+        <img src="https://i.imgur.com/5GLmOEW.png" alt="Icon 4" class="icon">
+        <img src="https://i.imgur.com/527gjHT.png" alt="Icon 5" class="icon">
+    </div>
+
+    <img src="https://i.imgur.com/t5T80ii.png" alt="صورة عائمة" class="floating-image">
+    <div class="right-box">About Us</div>
+    <div class="left-box">About Book</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // المشهد، الكاميرا، والعرض
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // تحميل الصورة
+        const textureLoader = new THREE.TextureLoader();
+        const texture = textureLoader.load('https://i.postimg.cc/vT56FHZ8/photo-2025-01-19-00-37-46-removebg-preview.png');
+
+        // إنشاء شبكة من الأجزاء
         const geometry = new THREE.PlaneGeometry(5, 5, 20, 20);
         const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
         const plane = new THREE.Mesh(geometry, material);
