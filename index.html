@@ -75,6 +75,64 @@
             margin-right: 10px;
         }
 
+        .floating-image {
+            position: absolute;
+            width: 100px;
+            height: auto;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        .floating-image {
+            top: calc(40% - 70px);
+            left: calc(86% - 220px);
+            transform: scale(6.5);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .right-box, .left-box {
+            position: absolute;
+            width: 150px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            opacity: 0;
+            transform: scale(0);
+            animation: popIn 2s ease-in-out forwards, pulse 3s infinite ease-in-out 2s;
+        }
+
+        .right-box {
+            top: calc(40% + 200px);
+            left: 50%;
+            background-color: #001a33;
+            transform: translateX(-50%) scale(0);
+        }
+
+        .left-box {
+            top: calc(40% + 200px);
+            right: calc(10% + 200px);
+            background-color: #ab4010;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
         canvas {
             position: absolute;
             top: 0;
@@ -95,6 +153,12 @@
         <img src="https://i.imgur.com/527gjHT.png" alt="Icon 5" class="icon">
     </div>
 
+    <!-- الصورة العائمة على اليمين -->
+    <img src="https://i.imgur.com/t5T80ii.png" alt="صورة عائمة" class="floating-image">
+
+    <!-- الصورة على اليسار مع تأثير التشظي -->
+    <canvas id="canvas"></canvas>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         // المشهد، الكاميرا، والعرض
@@ -102,7 +166,7 @@
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
+        document.getElementById('canvas').appendChild(renderer.domElement);
 
         // تحميل الصورة
         const textureLoader = new THREE.TextureLoader();
