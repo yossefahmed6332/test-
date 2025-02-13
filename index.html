@@ -176,11 +176,11 @@
         const plane = new THREE.Mesh(geometry, material);
         scene.add(plane);
 
+        // تحريك الصورة إلى أقصى اليسار
+        plane.position.x = -3; // تم تحريك الصورة ناحية اليسار بشكل أكبر
+
         // إعداد الكاميرا
         camera.position.z = 5;
-
-        // تحريك الصورة ناحية اليسار
-        plane.position.x = -1; // تم تحريك الصورة ناحية اليسار
 
         // تفاعل الماوس
         const raycaster = new THREE.Raycaster();
