@@ -139,6 +139,18 @@
             left: 0;
             z-index: 10;
         }
+
+        /* الكود المضاف */
+        .astronaut-image {
+            position: absolute;
+            width: 100px;
+            height: auto;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .astronaut-image:hover {
+            transform: scale(1.5);
+        }
     </style>
 </head>
 <body>
@@ -158,6 +170,14 @@
 
     <!-- الصورة على اليسار -->
     <img src="https://i.postimg.cc/vT56FHZ8/photo-2025-01-19-00-37-46-removebg-preview.png" alt="صورة على اليسار" style="position: absolute; top: 20%; left: 10%; width: 200px; height: auto;">
+
+    <!-- الصور الجديدة المضافة -->
+    <img src="https://i.imgur.com/GyxdqBe.png" class="astronaut-image" style="left: 250px; top: 380px;">
+    <img src="https://i.imgur.com/H6oRrrg.png" class="astronaut-image" style="left: 1270px; top: 210px;">
+    <img src="https://i.imgur.com/IzJJIAa.png" class="astronaut-image" style="left: 1400px; top: 220px;">
+    <img src="https://i.imgur.com/o4e0OBC.png" class="astronaut-image" style="left: 1620px; top: 230px;">
+    <img src="https://i.imgur.com/wpKkPQz.png" class="astronaut-image" style="left: 1270px; top: 480px;">
+    <img src="https://i.imgur.com/GMqNN6L.png" class="astronaut-image" style="left: 1600px; top: 510px;">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
