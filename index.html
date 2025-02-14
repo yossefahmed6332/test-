@@ -5,13 +5,147 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Healthy and Delicious Recipes</title>
     <style>
-        /* ... (بقية الأنماط تبقى كما هي) ... */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('https://i.imgur.com/YkcWluv.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 50% شفافية سوداء */
+        }
+
+        .right-line {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 180px;
+            background: #001a33;
+            transform: translateX(100%);
+            animation: slideInRight 1.5s ease-in-out forwards;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        .bottom-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            background: #ab4010;
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            transform: translateY(100%);
+            animation: slideUp 1.5s ease-in-out forwards;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        .contact-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-right: 20px;
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .floating-image {
+            position: absolute;
+            width: 100px;
+            height: auto;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        .floating-image {
+            top: calc(40% - 70px);
+            left: calc(86% - 220px);
+            transform: scale(7.5); /* زيادة الحجم بنسبة 50% */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .right-box, .left-box {
+            position: absolute;
+            width: 150px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            opacity: 0;
+            transform: scale(0);
+            animation: popIn 2s ease-in-out forwards, pulse 3s infinite ease-in-out 2s;
+            cursor: pointer;
+        }
+
+        .right-box {
+            top: calc(40% + 200px);
+            left: 50%;
+            background-color: #001a33;
+            transform: translateX(-50%) scale(0);
+        }
+
+        .left-box {
+            top: calc(40% + 200px);
+            right: calc(10% + 200px);
+            background-color: #ab4010;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
 
         /* البوكسين الجديدين */
         .box-container {
             position: absolute;
-            top: 45%; /* تم تغيير القيمة إلى 45% */
-            right: 15%; /* تم تغيير القيمة إلى 15% */
+            top: 45%; /* رفع البوكسين إلى 45% */
+            right: 15%; /* البعد عن الجانب الأيمن بنسبة 15% */
             display: flex;
             gap: 20px;
         }
@@ -39,7 +173,84 @@
             background-color: #ab4010; /* لون الخط الرأسي */
         }
 
-        /* ... (بقية الأنماط تبقى كما هي) ... */
+        /* تأثيرات التكبير */
+        .expand-horizontal {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 100%;
+            background-color: #001a33;
+            z-index: 100;
+            animation: expandHorizontal 1.5s forwards;
+        }
+
+        @keyframes expandHorizontal {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .expand-vertical {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: #ab4010;
+            z-index: 100;
+            animation: expandVertical 1.5s forwards;
+        }
+
+        @keyframes expandVertical {
+            from { height: 0; }
+            to { height: 100%; }
+        }
+
+        /* تأثيرات التصغير */
+        .shrink-horizontal {
+            animation: shrinkHorizontal 1.5s forwards;
+        }
+
+        @keyframes shrinkHorizontal {
+            from { width: 100%; }
+            to { width: 0; }
+        }
+
+        .shrink-vertical {
+            animation: shrinkVertical 1.5s forwards;
+        }
+
+        @keyframes shrinkVertical {
+            from { height: 100%; }
+            to { height: 0; }
+        }
+
+        /* زر العودة */
+        .back-box {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s, visibility 0.5s;
+            z-index: 200;
+        }
+
+        .back-box.visible {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
 <body>
