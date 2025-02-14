@@ -144,7 +144,7 @@
         /* البوكسين الجديدين */
         .box-container {
             position: absolute;
-            top: calc(40% + 250px); /* رفع البوكسين قليلاً */
+            top: 48%; /* رفع البوكسين إلى 48% */
             right: 10%;
             display: flex;
             gap: 20px;
@@ -206,6 +206,25 @@
             to { height: 100%; }
         }
 
+        /* تأثيرات التصغير */
+        .shrink-horizontal {
+            animation: shrinkHorizontal 1.5s forwards;
+        }
+
+        @keyframes shrinkHorizontal {
+            from { width: 100%; }
+            to { width: 0; }
+        }
+
+        .shrink-vertical {
+            animation: shrinkVertical 1.5s forwards;
+        }
+
+        @keyframes shrinkVertical {
+            from { height: 100%; }
+            to { height: 0; }
+        }
+
         /* زر العودة */
         .back-box {
             position: absolute;
@@ -262,9 +281,11 @@
     <div class="back-box" onclick="resetPage()">Back</div>
 
     <script>
+        let horizontalLine, verticalLine;
+
         // وظيفة لتكبير الخط الأفقي
         function expandHorizontal() {
-            const horizontalLine = document.createElement('div');
+            horizontalLine = document.createElement('div');
             horizontalLine.classList.add('expand-horizontal');
             document.body.appendChild(horizontalLine);
 
@@ -274,7 +295,7 @@
 
         // وظيفة لتكبير الخط الرأسي
         function expandVertical() {
-            const verticalLine = document.createElement('div');
+            verticalLine = document.createElement('div');
             verticalLine.classList.add('expand-vertical');
             document.body.appendChild(verticalLine);
 
@@ -284,8 +305,14 @@
 
         // وظيفة لإعادة الصفحة إلى وضعها الطبيعي
         function resetPage() {
-            const lines = document.querySelectorAll('.expand-horizontal, .expand-vertical');
-            lines.forEach(line => line.remove());
+            if (horizontalLine) {
+                horizontalLine.classList.add('shrink-horizontal');
+                horizontalLine.addEventListener('animationend', () => horizontalLine.remove());
+            }
+            if (verticalLine) {
+                verticalLine.classList.add('shrink-vertical');
+                verticalLine.addEventListener('animationend', () => verticalLine.remove());
+            }
 
             document.querySelector('.back-box').classList.remove('visible');
         }
