@@ -139,17 +139,6 @@
             left: 0;
             z-index: 10;
         }
-
-        /* تحديد حجم وعرض العنصر الذي يحتوي على التأثير */
-        #glass-effect {
-            position: absolute;
-            top: 30%;
-            left: 10%;
-            width: 200px;
-            height: 200px;
-            transform: scale(3);
-            overflow: hidden;
-        }
     </style>
 </head>
 <body>
@@ -167,8 +156,8 @@
     <!-- الصورة العائمة على اليمين -->
     <img src="https://i.imgur.com/t5T80ii.png" alt="صورة عائمة" class="floating-image">
 
-    <!-- العنصر الذي يحتوي على تأثير التكسير الزجاجي -->
-    <div id="glass-effect"></div>
+    <!-- الصورة على اليسار -->
+    <img src="https://i.postimg.cc/vT56FHZ8/photo-2025-01-19-00-37-46-removebg-preview.png" alt="صورة على اليسار" style="position: absolute; top: 30%; left: 10%; width: 200px; height: auto; transform: scale(3);">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
@@ -176,35 +165,15 @@
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true });
-        renderer.setSize(200, 200); // حجم العنصر
-        document.getElementById('glass-effect').appendChild(renderer.domElement);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
 
         // إعداد الكاميرا
         camera.position.z = 5;
 
-        // تحميل الصورة كنسيج
-        const textureLoader = new THREE.TextureLoader();
-        const texture = textureLoader.load('https://i.postimg.cc/vT56FHZ8/photo-2025-01-19-00-37-46-removebg-preview.png');
-
-        // إنشاء مادة (material) مع تأثير التكسير الزجاجي
-        const material = new THREE.MeshBasicMaterial({
-            map: texture,
-            transparent: true,
-            opacity: 0.9,
-            color: 0xffffff,
-            wireframe: false // إزالة التأثير الشبكي إذا كنت تريد صورة عادية
-        });
-
-        // إنشاء شبكة (mesh) باستخدام المادة
-        const geometry = new THREE.PlaneGeometry(2, 2, 10, 10);
-        const mesh = new THREE.Mesh(geometry, material);
-        scene.add(mesh);
-
         // عرض المشهد
         function animate() {
             requestAnimationFrame(animate);
-            mesh.rotation.x += 0.01;
-            mesh.rotation.y += 0.01;
             renderer.render(scene, camera);
         }
         animate();
