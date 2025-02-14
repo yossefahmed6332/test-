@@ -86,7 +86,7 @@
         .floating-image {
             top: calc(40% - 70px);
             left: calc(86% - 220px);
-            transform: scale(6.5);
+            transform: scale(7.5); /* زيادة الحجم بنسبة 50% */
         }
 
         @keyframes fadeIn {
@@ -139,18 +139,6 @@
             left: 0;
             z-index: 10;
         }
-
-        /* الكود المضاف */
-        .astronaut-image {
-            position: absolute;
-            width: 100px;
-            height: auto;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .astronaut-image:hover {
-            transform: scale(1.5);
-        }
     </style>
 </head>
 <body>
@@ -169,15 +157,7 @@
     <img src="https://i.imgur.com/t5T80ii.png" alt="صورة عائمة" class="floating-image">
 
     <!-- الصورة على اليسار -->
-    <img src="https://i.postimg.cc/vT56FHZ8/photo-2025-01-19-00-37-46-removebg-preview.png" alt="صورة على اليسار" style="position: absolute; top: 20%; left: 10%; width: 200px; height: auto;">
-
-    <!-- الصور الجديدة المضافة -->
-    <img src="https://i.imgur.com/GyxdqBe.png" class="astronaut-image" style="left: 250px; top: 380px;">
-    <img src="https://i.imgur.com/H6oRrrg.png" class="astronaut-image" style="left: 1270px; top: 210px;">
-    <img src="https://i.imgur.com/IzJJIAa.png" class="astronaut-image" style="left: 1400px; top: 220px;">
-    <img src="https://i.imgur.com/o4e0OBC.png" class="astronaut-image" style="left: 1620px; top: 230px;">
-    <img src="https://i.imgur.com/wpKkPQz.png" class="astronaut-image" style="left: 1270px; top: 480px;">
-    <img src="https://i.imgur.com/GMqNN6L.png" class="astronaut-image" style="left: 1600px; top: 510px;">
+    <div id="glass-effect" style="position: absolute; top: 30%; left: 10%; width: 200px; height: auto; transform: scale(3);"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
@@ -186,14 +166,34 @@
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
+        document.getElementById('glass-effect').appendChild(renderer.domElement);
 
         // إعداد الكاميرا
         camera.position.z = 5;
 
+        // تحميل الصورة كنسيج
+        const textureLoader = new THREE.TextureLoader();
+        const texture = textureLoader.load('https://i.postimg.cc/vT56FHZ8/photo-2025-01-19-00-37-46-removebg-preview.png');
+
+        // إنشاء مادة (material) مع تأثير التكسير الزجاجي
+        const material = new THREE.MeshBasicMaterial({
+            map: texture,
+            transparent: true,
+            opacity: 0.9,
+            color: 0xffffff,
+            wireframe: true // يمكن إزالته إذا كنت تريد تأثيرًا أكثر واقعية
+        });
+
+        // إنشاء شبكة (mesh) باستخدام المادة
+        const geometry = new THREE.PlaneGeometry(2, 2, 10, 10);
+        const mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+
         // عرض المشهد
         function animate() {
             requestAnimationFrame(animate);
+            mesh.rotation.x += 0.01;
+            mesh.rotation.y += 0.01;
             renderer.render(scene, camera);
         }
         animate();
