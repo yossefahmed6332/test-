@@ -145,7 +145,7 @@
         .box-container {
             position: absolute;
             top: 63%; /* تم تعديل هذه القيمة لإنزال البوكسين أكثر */
-            right: 18%; /* تم تقليل right بمقدار 7% */
+            right: 0; /* تم إزالة right من هنا */
             display: flex;
             gap: 20px;
         }
@@ -162,16 +162,19 @@
             border-radius: 10px;
             cursor: pointer;
             animation: pulse 3s infinite ease-in-out;
+            position: absolute; /* تحديد موقع كل بوكس بشكل مستقل */
         }
 
         .box-right {
             background-color: #001a33; /* لون الخط الأفقي */
-            margin-left: -20px; /* تحريك البوكس الأزرق قليلاً إلى اليسار */
+            top: 0; /* الموقع الرأسي */
+            right: 21%; /* الموقع الأفقي للبوكس الأيمن */
         }
 
         .box-left {
             background-color: #ab4010; /* لون الخط الرأسي */
-            right: 20%; /* تم تقليل right بمقدار 5% */
+            top: 0; /* الموقع الرأسي */
+            right: 16%; /* الموقع الأفقي للبوكس الأيسر */
         }
 
         /* تأثيرات التكبير */
