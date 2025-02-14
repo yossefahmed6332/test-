@@ -108,6 +108,7 @@
             opacity: 0;
             transform: scale(0);
             animation: popIn 2s ease-in-out forwards, pulse 3s infinite ease-in-out 2s;
+            cursor: pointer;
         }
 
         .right-box {
@@ -139,6 +140,82 @@
             left: 0;
             z-index: 10;
         }
+
+        /* البوكسين الجديدين */
+        .box-container {
+            position: absolute;
+            top: calc(40% + 300px);
+            right: 10%;
+            display: flex;
+            gap: 20px;
+        }
+
+        .box {
+            width: 150px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+        .box-right {
+            background-color: #001a33; /* لون الخط الأفقي */
+        }
+
+        .box-left {
+            background-color: #ab4010; /* لون الخط الرأسي */
+        }
+
+        /* تأثيرات التكبير */
+        .expand-horizontal {
+            animation: expandHorizontal 1.5s forwards;
+        }
+
+        @keyframes expandHorizontal {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        .expand-vertical {
+            animation: expandVertical 1.5s forwards;
+        }
+
+        @keyframes expandVertical {
+            from { transform: scaleY(0); }
+            to { transform: scaleY(1); }
+        }
+
+        /* زر العودة */
+        .back-box {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .back-box.visible {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
 <body>
@@ -156,27 +233,35 @@
     <!-- الصورة العائمة على اليمين -->
     <img src="https://i.imgur.com/t5T80ii.png" alt="صورة عائمة" class="floating-image">
 
-    <!-- الصورة على اليسار -->
-    <img src="https://i.postimg.cc/vT56FHZ8/photo-2025-01-19-00-37-46-removebg-preview.png" alt="صورة على اليسار" style="position: absolute; top: 30%; left: 10%; width: 200px; height: auto; transform: scale(3);">
+    <!-- البوكسين الجديدين -->
+    <div class="box-container">
+        <div class="box box-right" onclick="expandHorizontal()">About Us</div>
+        <div class="box box-left" onclick="expandVertical()">About Book</div>
+    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- زر العودة -->
+    <div class="back-box" onclick="resetPage()">Back</div>
+
     <script>
-        // المشهد، الكاميرا، والعرض
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-
-        // إعداد الكاميرا
-        camera.position.z = 5;
-
-        // عرض المشهد
-        function animate() {
-            requestAnimationFrame(animate);
-            renderer.render(scene, camera);
+        // وظيفة لتكبير الخط الأفقي
+        function expandHorizontal() {
+            document.body.style.backgroundColor = "#001a33"; // تغيير لون الخلفية
+            document.querySelector('.back-box').classList.add('visible'); // إظهار زر العودة
+            document.querySelector('.back-box').style.backgroundColor = "#ab4010"; // لون زر العودة
         }
-        animate();
+
+        // وظيفة لتكبير الخط الرأسي
+        function expandVertical() {
+            document.body.style.backgroundColor = "#ab4010"; // تغيير لون الخلفية
+            document.querySelector('.back-box').classList.add('visible'); // إظهار زر العودة
+            document.querySelector('.back-box').style.backgroundColor = "#001a33"; // لون زر العودة
+        }
+
+        // وظيفة لإعادة الصفحة إلى وضعها الطبيعي
+        function resetPage() {
+            document.body.style.backgroundColor = ""; // إعادة لون الخلفية
+            document.querySelector('.back-box').classList.remove('visible'); // إخفاء زر العودة
+        }
     </script>
 </body>
 </html>
