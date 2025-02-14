@@ -255,6 +255,19 @@
             opacity: 1;
             visibility: visible;
         }
+
+        /* الصورة على اليسار */
+        .left-image {
+            position: absolute;
+            top: 30%;
+            left: 10%;
+            width: 200px;
+            height: auto;
+            transform: scale(3);
+            z-index: 50;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards; /* نفس تأثير fadeIn */
+        }
     </style>
 </head>
 <body>
@@ -273,7 +286,7 @@
     <img src="https://i.imgur.com/t5T80ii.png" alt="صورة عائمة" class="floating-image">
 
     <!-- الصورة على اليسار -->
-    <img src="https://i.postimg.cc/vT56FHZ8/photo-2025-01-19-00-37-46-removebg-preview.png" alt="صورة على اليسار" style="position: absolute; top: 30%; left: 10%; width: 200px; height: auto; transform: scale(3); z-index: 50;">
+    <img src="https://i.postimg.cc/vT56FHZ8/photo-2025-01-19-00-37-46-removebg-preview.png" alt="صورة على اليسار" class="left-image">
 
     <!-- البوكسين الجديدين -->
     <div class="box-container">
