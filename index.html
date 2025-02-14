@@ -174,21 +174,35 @@
 
         /* تأثيرات التكبير */
         .expand-horizontal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: #001a33;
+            z-index: 100;
             animation: expandHorizontal 1.5s forwards;
         }
 
         @keyframes expandHorizontal {
-            from { transform: scaleX(0); }
-            to { transform: scaleX(1); }
+            from { height: 0; }
+            to { height: 100%; }
         }
 
         .expand-vertical {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: #ab4010;
+            z-index: 100;
             animation: expandVertical 1.5s forwards;
         }
 
         @keyframes expandVertical {
-            from { transform: scaleY(0); }
-            to { transform: scaleY(1); }
+            from { width: 0; }
+            to { width: 100%; }
         }
 
         /* زر العودة */
@@ -210,6 +224,7 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.5s, visibility 0.5s;
+            z-index: 200;
         }
 
         .back-box.visible {
@@ -233,6 +248,9 @@
     <!-- الصورة العائمة على اليمين -->
     <img src="https://i.imgur.com/t5T80ii.png" alt="صورة عائمة" class="floating-image">
 
+    <!-- الصورة على اليسار -->
+    <img src="https://i.postimg.cc/vT56FHZ8/photo-2025-01-19-00-37-46-removebg-preview.png" alt="صورة على اليسار" style="position: absolute; top: 30%; left: 10%; width: 200px; height: auto; transform: scale(3); z-index: 50;">
+
     <!-- البوكسين الجديدين -->
     <div class="box-container">
         <div class="box box-right" onclick="expandHorizontal()">About Us</div>
@@ -245,22 +263,30 @@
     <script>
         // وظيفة لتكبير الخط الأفقي
         function expandHorizontal() {
-            document.body.style.backgroundColor = "#001a33"; // تغيير لون الخلفية
-            document.querySelector('.back-box').classList.add('visible'); // إظهار زر العودة
-            document.querySelector('.back-box').style.backgroundColor = "#ab4010"; // لون زر العودة
+            const horizontalLine = document.createElement('div');
+            horizontalLine.classList.add('expand-horizontal');
+            document.body.appendChild(horizontalLine);
+
+            document.querySelector('.back-box').classList.add('visible');
+            document.querySelector('.back-box').style.backgroundColor = "#ab4010";
         }
 
         // وظيفة لتكبير الخط الرأسي
         function expandVertical() {
-            document.body.style.backgroundColor = "#ab4010"; // تغيير لون الخلفية
-            document.querySelector('.back-box').classList.add('visible'); // إظهار زر العودة
-            document.querySelector('.back-box').style.backgroundColor = "#001a33"; // لون زر العودة
+            const verticalLine = document.createElement('div');
+            verticalLine.classList.add('expand-vertical');
+            document.body.appendChild(verticalLine);
+
+            document.querySelector('.back-box').classList.add('visible');
+            document.querySelector('.back-box').style.backgroundColor = "#001a33";
         }
 
         // وظيفة لإعادة الصفحة إلى وضعها الطبيعي
         function resetPage() {
-            document.body.style.backgroundColor = ""; // إعادة لون الخلفية
-            document.querySelector('.back-box').classList.remove('visible'); // إخفاء زر العودة
+            const lines = document.querySelectorAll('.expand-horizontal, .expand-vertical');
+            lines.forEach(line => line.remove());
+
+            document.querySelector('.back-box').classList.remove('visible');
         }
     </script>
 </body>
