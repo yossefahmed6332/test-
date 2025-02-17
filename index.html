@@ -43,8 +43,9 @@
 
         .box-container {
             position: absolute;
-            top: calc(40% + 228px); /* تم رفع البوكسين إلى الأعلى بمقدار 22px */
-            right: 5%; /* نقل البوكسين إلى اليمين بنسبة 5% */
+            top: 50%; /* وضع البوكسين في منتصف الصفحة رأسيًا */
+            left: 50%; /* وضع البوكسين في منتصف الصفحة أفقيًا */
+            transform: translate(-50%, -50%) rotate(-5deg); /* ميلان البوكسين قليلاً إلى اليسار */
             display: flex;
             gap: 20px;
         }
@@ -61,19 +62,14 @@
             border-radius: 10px;
             cursor: pointer;
             animation: pulse 3s infinite ease-in-out;
-            position: absolute; /* تحديد موقع كل بوكس بشكل مستقل */
         }
 
         .box-right {
             background-color: #001a33; /* لون الخط الأفقي */
-            top: 0; /* الموقع الرأسي */
-            left: 0; /* تم إزاحة البوكس الأزرق إلى اليسار */
         }
 
         .box-left {
             background-color: #ab4010; /* لون الخط الرأسي */
-            top: 0; /* الموقع الرأسي */
-            left: 120px; /* زيادة المسافة بين البوكسين بسبب زيادة الحجم */
         }
 
         /* تأثيرات التكبير */
@@ -162,7 +158,7 @@
             left: 0;
             width: 100%;
             height: calc(100% - 90px); /* ارتفاع الصورة يملأ الفراغ بين الخط البرتقالي والبوكسين */
-            background-image: url('https://i.postimg.cc/QM6N3mzJ/f2bbd435-1aeb-406c-aa6a-6531c0a864b4.webp');
+            background-image: url('https://i.postimg.cc/MGx7f6dp/d4cf913c-ca2d-463c-833b-15f3558d6202-1-cleanup-LE-upscale-balanced-x4-tone-enhance-100-color-enhan.jpg');
             background-size: cover; /* تغطية المساحة مع الحفاظ على نسبة العرض إلى الارتفاع */
             background-position: center; /* توسيط الصورة */
             z-index: -1;
