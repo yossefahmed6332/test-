@@ -9,10 +9,7 @@
             margin: 0;
             padding: 0;
             height: 100vh;
-            background-image: url('https://i.imgur.com/YkcWluv.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-color: #f4f4f4; /* لون خلفية بديل */
             position: relative;
             overflow: hidden;
         }
@@ -23,17 +20,11 @@
             left: 0;
             width: 100%;
             height: 90px;
-            background: #ab4010;
+            background: #4e2f22; /* تغيير لون الخط إلى #4e2f22 */
             display: flex;
             align-items: center;
             padding-left: 20px;
-            transform: translateY(100%);
-            animation: slideUp 1.5s ease-in-out forwards;
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(100%); }
-            to { transform: translateY(0); }
+            transform: translateY(0); /* إزالة تأثير fade in */
         }
 
         .contact-text {
@@ -53,7 +44,7 @@
         .box-container {
             position: absolute;
             top: calc(40% + 228px); /* تم رفع البوكسين إلى الأعلى بمقدار 22px */
-            left: 20px; /* تم نقل البوكسين إلى الجانب الأيسر */
+            right: 5%; /* نقل البوكسين إلى اليمين بنسبة 5% */
             display: flex;
             gap: 20px;
         }
@@ -171,7 +162,7 @@
             left: 0;
             width: 100%;
             height: calc(100% - 90px); /* ارتفاع الصورة يملأ الفراغ بين الخط البرتقالي والبوكسين */
-            background-image: url('https://i.postimg.cc/fRtY1DsW/f199d1b2-82e2-4634-a55c-e5f27973828f-cleanup-LE-upscale-balanced-x4-tone-enhance-30-color-enhance-30.jpg');
+            background-image: url('https://i.postimg.cc/QM6N3mzJ/f2bbd435-1aeb-406c-aa6a-6531c0a864b4.webp');
             background-size: cover;
             background-position: center;
             z-index: -1;
