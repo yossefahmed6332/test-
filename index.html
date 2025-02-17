@@ -17,15 +17,6 @@
             overflow: hidden;
         }
 
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* 50% شفافية سوداء */
-        }
-
         .bottom-line {
             position: absolute;
             bottom: 0;
@@ -68,13 +59,13 @@
         }
 
         .box {
-            width: 75px; /* تصغير العرض إلى النصف */
-            height: 40px; /* تصغير الارتفاع إلى النصف */
+            width: 93.75px; /* زيادة العرض بمقدار 25% (75px + 25%) */
+            height: 50px; /* زيادة الارتفاع بمقدار 25% (40px + 25%) */
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 14px; /* تصغير حجم الخط */
+            font-size: 16px; /* زيادة حجم الخط قليلاً */
             font-weight: bold;
             border-radius: 10px;
             cursor: pointer;
@@ -91,7 +82,7 @@
         .box-left {
             background-color: #ab4010; /* لون الخط الرأسي */
             top: 0; /* الموقع الرأسي */
-            left: 95px; /* المسافة بين البوكسين */
+            left: 120px; /* زيادة المسافة بين البوكسين بسبب زيادة الحجم */
         }
 
         /* تأثيرات التكبير */
@@ -188,7 +179,6 @@
     </style>
 </head>
 <body>
-    <div class="overlay"></div>
     <div class="bottom-line">
         <span class="contact-text">Contact Us</span>
         <img src="https://i.imgur.com/FQIZncU.png" alt="Icon 1" class="icon">
