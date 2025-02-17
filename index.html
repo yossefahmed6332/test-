@@ -26,22 +26,6 @@
             background-color: rgba(0, 0, 0, 0.5); /* 50% شفافية سوداء */
         }
 
-        .right-line {
-            position: absolute;
-            top: 0;
-            right: 0;
-            height: 100%;
-            width: 180px;
-            background: #001a33;
-            transform: translateX(100%);
-            animation: slideInRight 1.5s ease-in-out forwards;
-        }
-
-        @keyframes slideInRight {
-            from { transform: translateX(100%); }
-            to { transform: translateX(0); }
-        }
-
         .bottom-line {
             position: absolute;
             bottom: 0;
@@ -75,89 +59,22 @@
             margin-right: 10px;
         }
 
-        .floating-image {
-            position: absolute;
-            width: 100px;
-            height: auto;
-            opacity: 0;
-            animation: fadeIn 1.5s ease-in-out forwards;
-        }
-
-        .floating-image {
-            top: calc(40% - 70px);
-            left: calc(86% - 220px);
-            transform: scale(7.5); /* زيادة الحجم بنسبة 50% */
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .right-box, .left-box {
-            position: absolute;
-            width: 150px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 10px;
-            opacity: 0;
-            transform: scale(0);
-            animation: popIn 2s ease-in-out forwards, pulse 3s infinite ease-in-out 2s;
-            cursor: pointer;
-        }
-
-        .right-box {
-            top: calc(40% + 200px);
-            left: 50%;
-            background-color: #001a33;
-            transform: translateX(-50%) scale(0);
-        }
-
-        .left-box {
-            top: calc(40% + 200px);
-            right: calc(10% + 200px);
-            background-color: #ab4010;
-        }
-
-        @keyframes popIn {
-            from { transform: scale(0); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 10;
-        }
-
-        /* البوكسين الجديدين */
         .box-container {
             position: absolute;
             top: calc(40% + 228px); /* تم رفع البوكسين إلى الأعلى بمقدار 22px */
-            left: calc(86% - 260px); /* تم زيادة left لتحريك البوكسين إلى اليسار */
+            left: 20px; /* تم نقل البوكسين إلى الجانب الأيسر */
             display: flex;
             gap: 20px;
         }
 
         .box {
-            width: 150px;
-            height: 80px;
+            width: 75px; /* تصغير العرض إلى النصف */
+            height: 40px; /* تصغير الارتفاع إلى النصف */
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 18px;
+            font-size: 14px; /* تصغير حجم الخط */
             font-weight: bold;
             border-radius: 10px;
             cursor: pointer;
@@ -168,13 +85,13 @@
         .box-right {
             background-color: #001a33; /* لون الخط الأفقي */
             top: 0; /* الموقع الرأسي */
-            left: -140px; /* تم إزاحة البوكس الأزرق إلى اليسار بمقدار 140px */
+            left: 0; /* تم إزاحة البوكس الأزرق إلى اليسار */
         }
 
         .box-left {
             background-color: #ab4010; /* لون الخط الرأسي */
             top: 0; /* الموقع الرأسي */
-            left: 170px; /* المسافة بين البوكسين */
+            left: 95px; /* المسافة بين البوكسين */
         }
 
         /* تأثيرات التكبير */
@@ -256,23 +173,22 @@
             visibility: visible;
         }
 
-        /* الصورة على اليسار */
-        .left-image {
+        /* الصورة الجديدة */
+        .main-image {
             position: absolute;
-            top: 30%;
-            left: 10%;
-            width: 200px;
-            height: auto;
-            transform: scale(3);
-            z-index: 50;
-            opacity: 0;
-            animation: fadeIn 1.5s ease-in-out forwards; /* نفس تأثير fadeIn */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 90px); /* ارتفاع الصورة يملأ الفراغ بين الخط البرتقالي والبوكسين */
+            background-image: url('https://i.postimg.cc/fRtY1DsW/f199d1b2-82e2-4634-a55c-e5f27973828f-cleanup-LE-upscale-balanced-x4-tone-enhance-30-color-enhance-30.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
         }
     </style>
 </head>
 <body>
     <div class="overlay"></div>
-    <div class="right-line"></div>
     <div class="bottom-line">
         <span class="contact-text">Contact Us</span>
         <img src="https://i.imgur.com/FQIZncU.png" alt="Icon 1" class="icon">
@@ -282,11 +198,8 @@
         <img src="https://i.imgur.com/527gjHT.png" alt="Icon 5" class="icon">
     </div>
 
-    <!-- الصورة العائمة على اليمين -->
-    <img src="https://i.imgur.com/t5T80ii.png" alt="صورة عائمة" class="floating-image">
-
-    <!-- الصورة على اليسار -->
-    <img src="https://i.postimg.cc/vT56FHZ8/photo-2025-01-19-00-37-46-removebg-preview.png" alt="صورة على اليسار" class="left-image">
+    <!-- الصورة الجديدة -->
+    <div class="main-image"></div>
 
     <!-- البوكسين الجديدين -->
     <div class="box-container">
