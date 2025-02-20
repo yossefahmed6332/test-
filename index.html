@@ -35,7 +35,7 @@
         .image-section {
             display: flex;
             align-items: flex-end;
-            justify-content: flex-end;
+            justify-content: flex-start; /* تغيير إلى الجانب الأيسر */
             height: auto; /* ارتفاع يتكيف مع الصورة */
             min-height: 65vh; /* الحد الأدنى للارتفاع */
             background-color: #f8d3e1; /* لون الخلفية الجديد */
@@ -45,9 +45,10 @@
         }
 
         .image-section img {
-            width: 100%;
-            height: 100%;
+            width: 50%; /* تصغير الصورة */
+            height: auto;
             object-fit: contain; /* الصورة تظهر كاملة دون اقتصاص */
+            margin-right: auto; /* وضع الصورة على الجانب الأيسر */
         }
 
         .email-box {
@@ -167,7 +168,7 @@
 
     <!-- قسم الصورة -->
     <div class="image-section">
-        <img src="https://i.postimg.cc/X72SdmPL/8b8eb177-5fa6-46e3-95e4-411157c98598-cleanup.png" alt="Food Image">
+        <img src="https://i.postimg.cc/66HwYFS8/f2bbd435-1aeb-406c-aa6a-6531c0a864b4-LE-upscale-balanced-x4-tone-enhance-50-color-enhance-100.jpg" alt="Food Image">
         <div class="email-box">
             <small>Email me later</small>
             <input type="email" placeholder="Enter your email">
