@@ -17,7 +17,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            background-color: #f8d3e1; /* لون الخلفية الجديد */
+            background-color: #8d3e1a; /* لون الخلفية الجديد */
         }
 
         /* شريط التمرير */
@@ -35,7 +35,7 @@
         .image-section {
             position: relative;
             height: 65vh; /* ارتفاع القسم */
-            background-color: #f8d3e1; /* لون الخلفية الجديد */
+            background-color: #8d3e1a; /* لون الخلفية الجديد */
             overflow: hidden;
         }
 
@@ -43,9 +43,11 @@
             position: absolute;
             top: 0;
             left: 0; /* الصورة في أقصى اليسار */
-            max-width: 50%; /* عرض الصورة لا يتجاوز 50% */
+            width: 50%; /* عرض الصورة 50% من الشاشة */
             height: auto;
             object-fit: contain; /* الصورة تظهر كاملة دون اقتصاص */
+            transform: scale(1.5); /* تكبير الصورة بنسبة 50% */
+            transform-origin: left top; /* التكبير من أعلى اليسار */
         }
 
         .email-box {
@@ -58,7 +60,7 @@
 
         .email-box small {
             font-size: 12px;
-            color: #555;
+            color: #fff; /* لون النص الأبيض */
         }
 
         .email-box input {
@@ -82,22 +84,9 @@
             position: relative;
             text-align: center;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* ظل أسود */
-        }
-
-        .text-section .right {
-            font-size: 48px; /* حجم النص مضاعف */
-            font-weight: bold;
-            animation: jump 2s infinite;
-        }
-
-        .text-section .center {
-            font-size: 40px; /* حجم النص مضاعف */
-            animation: jump 2s infinite 0.5s;
-        }
-
-        .text-section .left {
-            font-size: 36px; /* حجم النص مضاعف */
-            animation: jump 2s infinite 1s;
+            font-size: 36px; /* حجم الخط موحد */
+            font-weight: bold; /* سمك الخط موحد */
+            animation: jump 2s infinite; /* الأنيميشن */
         }
 
         /* الدوائر أسفل الجمل */
@@ -106,7 +95,7 @@
             display: block;
             width: 20px;
             height: 20px;
-            background-color: #f8d3e1;
+            background-color: #8d3e1a;
             border-radius: 50%;
             margin: 10px auto 0;
         }
