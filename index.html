@@ -17,7 +17,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            background-color: #f8d3e1; /* لون الخلفية الجديد */
+            background-color: #8d3e1a; /* لون الخلفية الجديد */
         }
 
         /* شريط التمرير */
@@ -34,6 +34,174 @@
         /* قسم الصورة */
         .image-section {
             position: relative;
+            height: 65vh; /* ارتفاع القسم */
+            background-color: #8d3e1a; /* لون الخلفية الجديد */
+            overflow: hidden;
+        }
+
+        .image-section img {
+            position: absolute;
+            top: 0;
+            left: 0; /* الصورة في أقصى اليسار */
+            width: 50%; /* عرض الصورة 50% من الشاشة */
+            height: auto;
+            object-fit: contain; /* الصورة تظهر كاملة دون اقتصاص */
+        }
+
+        .email-box {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            text-align: right;
+            z-index: 10;
+        }
+
+        .email-box small {
+            font-size: 12px;
+            color: #fff; /* لون النص الأبيض */
+        }
+
+        .email-box input {
+            padding: 5px;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* النصوص في الثلث الأخير */
+        .text-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 35vh; /* 35% من ارتفاع الشاشة */
+            padding: 20px;
+            background-color: #8d3e1a; /* لون الخلفية الجديد */
+        }
+
+        .text-section div {
+            position: relative;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* ظل أسود */
+            font-size: 36px; /* حجم الخط موحد */
+            font-weight: bold; /* سمك الخط موحد */
+            animation: jump 2s infinite; /* الأنيميشن */
+        }
+
+        .text-section .left {
+            text-align: left; /* النص في أقصى اليسار */
+        }
+
+        .text-section .center {
+            text-align: center; /* النص في المنتصف */
+        }
+
+        .text-section .right {
+            text-align: right; /* النص في أقصى اليمين */
+        }
+
+        /* الدوائر أسفل الجمل */
+        .text-section div::after {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 20px;
+            background-color: #8d3e1a;
+            border-radius: 50%;
+            margin: 10px auto 0;
+        }
+
+        /* Animation للقفز */
+        @keyframes jump {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* القسم السفلي */
+        .bottom-section {
+            display: flex;
+            justify-content: space-between;
+            height: 33.33vh;
+            padding: 20px;
+            background-color: #8d3e1a; /* لون الخلفية الجديد */
+        }
+
+        .bottom-section .right {
+            width: 50%;
+        }
+
+        .bottom-section .right h2 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #fff; /* لون النص الأبيض */
+        }
+
+        .bottom-section .right p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+            color: #fff; /* لون النص الأبيض */
+        }
+
+        .bottom-section .left {
+            width: 50%;
+            padding-left: 20px;
+        }
+
+        .bottom-section .left h1 {
+            font-size: 5em;
+            margin-bottom: 20px;
+            color: #fff; /* لون النص الأبيض */
+        }
+
+        .bottom-section .left p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+            color: #fff; /* لون النص الأبيض */
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التمرير -->
+    <div class="scroll-bar"></div>
+
+    <!-- قسم الصورة -->
+    <div class="image-section">
+        <img src="https://i.postimg.cc/66HwYFS8/f2bbd435-1aeb-406c-aa6a-6531c0a864b4-LE-upscale-balanced-x4-tone-enhance-50-color-enhance-100.jpg" alt="Food Image">
+        <div class="email-box">
+            <small>Email me later</small>
+            <input type="email" placeholder="Enter your email">
+        </div>
+    </div>
+
+    <!-- النصوص في الثلث الأخير -->
+    <div class="text-section">
+        <div class="left">Eat healthy</div> <!-- أقصى اليسار -->
+        <div class="center">Cook easily</div> <!-- المنتصف -->
+        <div class="right">Delicious as it should be</div> <!-- أقصى اليمين -->
+    </div>
+
+    <!-- القسم السفلي -->
+    <div class="bottom-section">
+        <div class="right">
+            <h2>Why this book?</h2>
+            <p>90 carefully selected recipes</p>
+            <p>25 for chicken and 15 for salmon</p>
+            <p>20 Healthy Desserts and 10 Drinks</p>
+            <p>20 Juicy and Protein-Packed Salads</p>
+            <p>Place to post pictures of your dishes.</p>
+        </div>
+        <div class="left">
+            <h1>Cook in space</h1>
+            <p>More features:</p>
+            <p>Special discounts if you buy during this period for upcoming books</p>
+            <p>The book will be at a 65% discount until someone publishes the first dish</p>
+            <p>Once you write your email above, we will notify you of everything new.</p>
+        </div>
+    </div>
+</body>
+</html>
             height: 65vh; /* ارتفاع القسم */
             background-color: #f8d3e1; /* لون الخلفية الجديد */
             overflow: hidden;
