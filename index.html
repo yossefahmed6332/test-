@@ -33,22 +33,19 @@
 
         /* قسم الصورة */
         .image-section {
-            display: flex;
-            align-items: flex-end;
-            justify-content: flex-start; /* تغيير إلى الجانب الأيسر */
-            height: auto; /* ارتفاع يتكيف مع الصورة */
-            min-height: 65vh; /* الحد الأدنى للارتفاع */
-            background-color: #f8d3e1; /* لون الخلفية الجديد */
-            padding: 20px;
             position: relative;
+            height: 65vh; /* ارتفاع القسم */
+            background-color: #f8d3e1; /* لون الخلفية الجديد */
             overflow: hidden;
         }
 
         .image-section img {
-            width: 50%; /* تصغير الصورة */
+            position: absolute;
+            top: 0;
+            left: 0; /* الصورة في أقصى اليسار */
+            max-width: 50%; /* عرض الصورة لا يتجاوز 50% */
             height: auto;
             object-fit: contain; /* الصورة تظهر كاملة دون اقتصاص */
-            margin-right: auto; /* وضع الصورة على الجانب الأيسر */
         }
 
         .email-box {
@@ -78,6 +75,7 @@
             height: 35vh; /* 35% من ارتفاع الشاشة */
             padding: 20px;
             background-color: #e0e0e0;
+            margin-left: 25%; /* مسافة متساوية بين الصورة والجمل */
         }
 
         .text-section div {
