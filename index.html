@@ -1,228 +1,169 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Healthy and Delicious Recipes</title>
+    <title>Responsive Page</title>
     <style>
-        body {
+        /* Reset بعض الإعدادات الأساسية */
+        * {
             margin: 0;
             padding: 0;
-            height: 100vh;
-            background-color: #f4f4f4; /* لون خلفية بديل */
-            position: relative;
-            overflow: hidden;
+            box-sizing: border-box;
         }
 
-        .bottom-line {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 90px;
-            background: #4e2f22; /* تغيير لون الخط إلى #4e2f22 */
+        body {
+            font-family: Arial, sans-serif;
             display: flex;
-            align-items: center;
-            padding-left: 20px;
-            transform: translateY(0); /* إزالة تأثير fade in */
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        .contact-text {
+        /* شريط التمرير */
+        .scroll-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #ccc;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        /* قسم الصورة */
+        .image-section {
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            height: 33.33vh;
+            background-color: #f4f4f4;
+            padding: 20px;
+            position: relative;
+        }
+
+        .image-section img {
+            width: 50%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .email-box {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            text-align: right;
+        }
+
+        .email-box small {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .email-box input {
+            padding: 5px;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* النصوص في الثلث الأخير */
+        .text-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 33.33vh;
+            padding: 20px;
+            background-color: #e0e0e0;
+        }
+
+        .text-section .right {
             font-size: 24px;
             font-weight: bold;
-            color: white;
-            margin-right: 20px;
         }
 
-        .icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
+        .text-section .center {
+            font-size: 20px;
         }
 
-        .box-container {
-            position: absolute;
-            top: 50%; /* وضع البوكسين في منتصف الصفحة رأسيًا */
-            left: 50%; /* وضع البوكسين في منتصف الصفحة أفقيًا */
-            transform: translate(-50%, -50%) rotate(-5deg); /* ميلان البوكسين قليلاً إلى اليسار */
-            display: flex;
-            gap: 20px;
-        }
-
-        .box {
-            width: 93.75px; /* زيادة العرض بمقدار 25% (75px + 25%) */
-            height: 50px; /* زيادة الارتفاع بمقدار 25% (40px + 25%) */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 16px; /* زيادة حجم الخط قليلاً */
-            font-weight: bold;
-            border-radius: 10px;
-            cursor: pointer;
-            animation: pulse 3s infinite ease-in-out;
-        }
-
-        .box-right {
-            background-color: #001a33; /* لون الخط الأفقي */
-        }
-
-        .box-left {
-            background-color: #ab4010; /* لون الخط الرأسي */
-        }
-
-        /* تأثيرات التكبير */
-        .expand-horizontal {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 0;
-            height: 100%;
-            background-color: #001a33;
-            z-index: 100;
-            animation: expandHorizontal 1.5s forwards;
-        }
-
-        @keyframes expandHorizontal {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        .expand-vertical {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 0;
-            background-color: #ab4010;
-            z-index: 100;
-            animation: expandVertical 1.5s forwards;
-        }
-
-        @keyframes expandVertical {
-            from { height: 0; }
-            to { height: 100%; }
-        }
-
-        /* تأثيرات التصغير */
-        .shrink-horizontal {
-            animation: shrinkHorizontal 1.5s forwards;
-        }
-
-        @keyframes shrinkHorizontal {
-            from { width: 100%; }
-            to { width: 0; }
-        }
-
-        .shrink-vertical {
-            animation: shrinkVertical 1.5s forwards;
-        }
-
-        @keyframes shrinkVertical {
-            from { height: 100%; }
-            to { height: 0; }
-        }
-
-        /* زر العودة */
-        .back-box {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
+        .text-section .left {
             font-size: 18px;
-            font-weight: bold;
-            border-radius: 10px;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s, visibility 0.5s;
-            z-index: 200;
         }
 
-        .back-box.visible {
-            opacity: 1;
-            visibility: visible;
+        /* القسم السفلي */
+        .bottom-section {
+            display: flex;
+            justify-content: space-between;
+            height: 33.33vh;
+            padding: 20px;
+            background-color: #f9f9f9;
         }
 
-        /* الصورة الجديدة */
-        .main-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: calc(100% - 90px); /* ارتفاع الصورة يملأ الفراغ بين الخط البرتقالي والبوكسين */
-            background-image: url('https://i.postimg.cc/MGx7f6dp/d4cf913c-ca2d-463c-833b-15f3558d6202-1-cleanup-LE-upscale-balanced-x4-tone-enhance-100-color-enhan.jpg');
-            background-size: cover; /* تغطية المساحة مع الحفاظ على نسبة العرض إلى الارتفاع */
-            background-position: center; /* توسيط الصورة */
-            z-index: -1;
+        .bottom-section .right {
+            width: 50%;
+        }
+
+        .bottom-section .right h2 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .bottom-section .right p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .bottom-section .left {
+            width: 50%;
+            padding-left: 20px;
+        }
+
+        .bottom-section .left h1 {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        .bottom-section .left p {
+            margin-bottom: 10px;
+            line-height: 1.5;
         }
     </style>
 </head>
 <body>
-    <div class="bottom-line">
-        <span class="contact-text">Contact Us</span>
-        <img src="https://i.imgur.com/FQIZncU.png" alt="Icon 1" class="icon">
-        <img src="https://i.imgur.com/11iledh.png" alt="Icon 2" class="icon">
-        <img src="https://i.imgur.com/QRsal5x.png" alt="Icon 3" class="icon">
-        <img src="https://i.imgur.com/5GLmOEW.png" alt="Icon 4" class="icon">
-        <img src="https://i.imgur.com/527gjHT.png" alt="Icon 5" class="icon">
+    <!-- شريط التمرير -->
+    <div class="scroll-bar"></div>
+
+    <!-- قسم الصورة -->
+    <div class="image-section">
+        <img src="https://via.placeholder.com/800x400" alt="Placeholder Image">
+        <div class="email-box">
+            <small>Email me later</small>
+            <input type="email" placeholder="Enter your email">
+        </div>
     </div>
 
-    <!-- الصورة الجديدة -->
-    <div class="main-image"></div>
-
-    <!-- البوكسين الجديدين -->
-    <div class="box-container">
-        <div class="box box-right" onclick="expandHorizontal()">About Us</div>
-        <div class="box box-left" onclick="expandVertical()">About Book</div>
+    <!-- النصوص في الثلث الأخير -->
+    <div class="text-section">
+        <div class="right">Eat healthy</div>
+        <div class="center">Cook easily</div>
+        <div class="left">Delicious as it should be</div>
     </div>
 
-    <!-- زر العودة -->
-    <div class="back-box" onclick="resetPage()">Back</div>
-
-    <script>
-        let horizontalLine, verticalLine;
-
-        // وظيفة لتكبير الخط الأفقي
-        function expandHorizontal() {
-            horizontalLine = document.createElement('div');
-            horizontalLine.classList.add('expand-horizontal');
-            document.body.appendChild(horizontalLine);
-
-            document.querySelector('.back-box').classList.add('visible');
-            document.querySelector('.back-box').style.backgroundColor = "#ab4010";
-        }
-
-        // وظيفة لتكبير الخط الرأسي
-        function expandVertical() {
-            verticalLine = document.createElement('div');
-            verticalLine.classList.add('expand-vertical');
-            document.body.appendChild(verticalLine);
-
-            document.querySelector('.back-box').classList.add('visible');
-            document.querySelector('.back-box').style.backgroundColor = "#001a33";
-        }
-
-        // وظيفة لإعادة الصفحة إلى وضعها الطبيعي
-        function resetPage() {
-            if (horizontalLine) {
-                horizontalLine.classList.add('shrink-horizontal');
-                horizontalLine.addEventListener('animationend', () => horizontalLine.remove());
-            }
-            if (verticalLine) {
-                verticalLine.classList.add('shrink-vertical');
-                verticalLine.addEventListener('animationend', () => verticalLine.remove());
-            }
-
-            document.querySelector('.back-box').classList.remove('visible');
-        }
-    </script>
+    <!-- القسم السفلي -->
+    <div class="bottom-section">
+        <div class="right">
+            <h2>Why this book?</h2>
+            <p>90 carefully selected recipes</p>
+            <p>25 for chicken and 15 for salmon</p>
+            <p>20 Healthy Desserts and 10 Drinks</p>
+            <p>20 Juicy and Protein-Packed Salads</p>
+            <p>Place to post pictures of your dishes.</p>
+        </div>
+        <div class="left">
+            <h1>Cook in space</h1>
+            <p>More features:</p>
+            <p>Special discounts if you buy during this period for upcoming books</p>
+            <p>The book will be at a 65% discount until someone publishes the first dish</p>
+            <p>Once you write your email above, we will notify you of everything new.</p>
+        </div>
+    </div>
 </body>
 </html>
