@@ -1,103 +1,140 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ritoya Doctor Care</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ritoya Doctor Care</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
 
-    /* القسم العلوي */
-    .hero {
-      background-color: #c3bdcc; /* اللون الذي طلبته */
-      color: #fff;
-      text-align: center;
-      padding: 60px 20px;
-    }
-
-    .hero h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-    }
-
-    .button {
-      background-color: #fff;
-      color: #c3bdcc;
-      padding: 10px 20px;
-      text-decoration: none;
-      border-radius: 25px;
-      font-weight: bold;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    .button:hover {
-      background-color: #b8b0c2;
-      color: #fff;
-    }
-
-    /* القسم السفلي */
-    .content {
-      background-color: #ffffff; /* اللون الأبيض */
-      padding: 50px 20px;
-      text-align: center;
-    }
-
-    .boxes {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .box {
-      background-color: #f9f9f9;
-      padding: 20px;
-      width: 250px;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.8s forwards;
-    }
-
-    .box:nth-child(1) { animation-delay: 0.3s; }
-    .box:nth-child(2) { animation-delay: 0.6s; }
-    .box:nth-child(3) { animation-delay: 0.9s; }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-  </style>
+        body {
+            font-family: 'Cairo', Arial, sans-serif;
+            margin: 0;
+            background-color: #f8f5f1;
+            color: #96643d;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .left img {
+            width: 100%;
+            max-width: 480px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .right {
+            flex: 1;
+            padding: 10px;
+        }
+        h1 {
+            color: #00796b;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        p {
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        .features {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        .feature {
+            background-color: #d8e3d0;
+            padding: 15px;
+            border-radius: 12px;
+            flex: 1 1 300px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+        .feature img {
+            width: 100%;
+            max-width: 240px;
+            border-radius: 10px;
+        }
+        .feature h2 {
+            margin-top: 10px;
+            color: #00796b;
+            font-size: 20px;
+        }
+        .feature p {
+            font-size: 15px;
+            margin: 10px 0;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #ff9800;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #e68900;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- القسم العلوي -->
-  <section class="hero">
-    <h1>Ritoya Doctor Care</h1>
-    <p>طبيعي وصديق للبيئة وخالي مما يضر البشرة أو الشعر</p>
-    <a href="https://yossefahmed6332.github.io/test-/" class="button">استكشف منتجاتنا</a>
-  </section>
-
-  <!-- القسم السفلي -->
-  <section class="content">
-    <div class="boxes">
-      <div class="box">منتجات العناية بالشعر</div>
-      <div class="box">منتجات العناية بالبشرة</div>
-      <div class="box">منتجات العناية بالجسم</div>
+<div class="container">
+    <div class="left">
+        <img src="https://i.postimg.cc/zB08hWYd/2025-08-12-01-54-19-6d4d82ca.jpg" alt="About Ritoya">
     </div>
-  </section>
+
+    <div class="right">
+        <h1>من نحن ؟</h1>
+        <p><strong>Ritoya Doctor Care</strong><br>
+        علامة رائدة في عالم العناية بالبشرة والجسم والشعر، نقدم حلولاً طبيعية وفعّالة لمشكلات الجمال اليومية.</p>
+        <p>ما يميزنا؟<br>
+        ✔️ خبرة علمية + وصفات طبيعية = نتائج مضمونة<br>
+        ✔️ نبتكر منتجات آمنة تناسب جميع أنواع البشرة والشعر<br>
+        ✔️ نركز على الجودة والشفافية (كل مكون نستخدمه له هدف واضح)<br>
+        ✔️ نؤمن بأن الجمال الحقيقي يبدأ من العناية الصحية</p>
+        <p><strong>رؤيتنا:</strong><br>
+        تحويل روتين العناية إلى تجربة فاخرة تُعيد لجسدكِ توازنه الطبيعي.</p>
+        <p><strong>لماذا نختلف؟</strong><br>
+        لأننا لا نغطي المشكلات، بل نحلها من الجذور بتركيبات مدروسة.</p>
+    </div>
+</div>
+
+<div class="features">
+    <div class="feature">
+        <h2>For hair</h2>
+        <img src="https://i.postimg.cc/3JtbmB65/db240958-799f-400b-ba34-8beaa35cdfa4.png" alt="Hair care">
+        <p>غذي شعرك بمكونات طبيعية مهما كان جاف او متقصف ... فالحل دائما عندنا</p>
+        <a class="btn" href="hair.html">استكشف المزيد</a>
+    </div>
+
+    <div class="feature">
+        <h2>For skin</h2>
+        <img src="https://i.postimg.cc/MZCd8rjD/IMG-20250813-WA0005.jpg" alt="Skin care">
+        <p>انتهي من البشرة الجافة و حبوب البشرة الدهنية , منتجات طبيعية تحمي جميع انواع البشرة !</p>
+        <a class="btn" href="skin.html">استكشف المزيد</a>
+    </div>
+
+    <div class="feature">
+        <h2>For body</h2>
+        <img src="https://i.postimg.cc/wvtZwyST/IMG-20250802-WA0024.jpg" alt="Body care">
+        <p>حتى الجسد يحتاج عناية , غذي جسدك بأفضل المكونات لرائحة جميلة و منعشة و جسم رطب</p>
+        <a class="btn" href="body.html">استكشف المزيد</a>
+    </div>
+</div>
 
 </body>
 </html>
