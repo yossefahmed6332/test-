@@ -1,140 +1,139 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ritoya Doctor Care</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ritoya Doctor Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f8f5f1;          /* خلفية هادئة */
+      --text:#96643d;        /* لون النص الأساسي */
+      --card:#d8e3d0;        /* لون البوكسات (أخضر زيتوني فاتح) */
+      --muted:#c9c5d4;       /* لون مساعد */
+      --accent:#ff9800;      /* لون الأزرار */
+      --heading:#2f5e4f;     /* عناوين البطاقات */
+      --olive:#808000;       /* زيتوني للـ package */
+      --radius:16px;
+      --shadow:0 10px 24px rgba(0,0,0,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; background:var(--bg); color:var(--text); font-family:"Cairo", Tahoma, Arial, sans-serif; line-height:1.85; overflow-x:hidden}
+    img{max-width:100%; display:block}
+    .wrapper{max-width:1200px; margin-inline:auto; padding:20px}
 
-        body {
-            font-family: 'Cairo', Arial, sans-serif;
-            margin: 0;
-            background-color: #f8f5f1;
-            color: #96643d;
-        }
-        .container {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .left img {
-            width: 100%;
-            max-width: 480px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .right {
-            flex: 1;
-            padding: 10px;
-        }
-        h1 {
-            color: #00796b;
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-        p {
-            line-height: 1.8;
-            font-size: 16px;
-        }
-        .features {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
-            gap: 20px;
-            flex-wrap: wrap;
-            padding: 20px;
-        }
-        .feature {
-            background-color: #d8e3d0;
-            padding: 15px;
-            border-radius: 12px;
-            flex: 1 1 300px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-        }
-        .feature img {
-            width: 100%;
-            max-width: 240px;
-            border-radius: 10px;
-        }
-        .feature h2 {
-            margin-top: 10px;
-            color: #00796b;
-            font-size: 20px;
-        }
-        .feature p {
-            font-size: 15px;
-            margin: 10px 0;
-        }
-        .btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #ff9800;
-            color: white;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-        .btn:hover {
-            background-color: #e68900;
-        }
-    </style>
+    /* ===== قسم من نحن ===== */
+    .about{display:grid; grid-template-columns: 1fr 1.1fr; gap:24px; align-items:center}
+    .about__img{width:100%; border-radius:var(--radius); box-shadow:var(--shadow); max-height:560px; object-fit:cover; object-position:center}
+    .about h1{margin:0 0 8px; font-size:clamp(28px,4vw,40px); color:var(--text)}
+    .lead{font-size:18px; margin:0 0 8px}
+    .list{margin:8px 0 12px; padding:0 0 0 18px}
+    .list li{margin:6px 0}
+    .divider{height:1px; background:linear-gradient(90deg,transparent,var(--muted),transparent); margin:12px 0}
+
+    /* ===== البطاقات ===== */
+    .features{display:grid; grid-template-columns: repeat(3,1fr); gap:20px; margin-top:28px}
+    .feature{background:var(--card); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); display:flex; flex-direction:column; align-items:center; text-align:center; transition:.2s ease transform, .2s ease box-shadow}
+    .feature:hover{transform:translateY(-3px); box-shadow:0 16px 28px rgba(0,0,0,.12)}
+    .feature h2{margin:6px 0 10px; color:var(--heading); font-size:clamp(18px,2.4vw,24px)}
+    .feature p{font-size:17px; margin:12px 0 14px}
+    .btn{display:inline-block; width:100%; max-width:220px; margin-top:auto; padding:12px 16px; border-radius:12px; background:var(--accent); color:#fff; text-decoration:none; font-weight:800; text-align:center}
+    .btn:hover{filter:brightness(1.05)}
+
+    /* ===== Package (أسفل البطاقات يسار الشاشة) ===== */
+    .package{margin-top:34px}
+    /* نجعل هذا القسم يمتد لعرض الشاشة ليصبح البوكس لازق في اليسار */
+    .package.full-bleed{width:100vw; margin-left:calc(50% - 50vw); padding-left:16px; padding-right:16px}
+    .package-box{background:var(--olive); color:#fff; padding:14px 18px; border-radius:10px; font-weight:800; width:max-content; box-shadow:var(--shadow)}
+    .package-desc{max-width:720px; margin:10px 0 0; font-size:17px}
+
+    /* ===== صندوق أنيميشن الاستكشاف ===== */
+    .explore-anim{display:inline-block; margin-top:14px; padding:12px 18px; background:var(--card); color:var(--text); border-radius:12px; font-weight:800; text-decoration:none; position:relative; animation:fly 8s ease-in-out infinite}
+    @keyframes fly{
+      0%{ transform:translateX(28vw) }
+      25%{ transform:translateX(0) }
+      50%{ transform:translateX(-28vw) }
+      75%{ transform:translateX(0) scale(1.05) }
+      100%{ transform:translateX(28vw) }
+    }
+
+    /* ===== استجابة الشاشات ===== */
+    @media (max-width: 1024px){
+      .features{grid-template-columns: repeat(2,1fr)}
+    }
+    @media (max-width: 768px){
+      .about{grid-template-columns:1fr}
+      .about__img{max-height:420px}
+      .features{grid-template-columns:1fr}
+      .btn{max-width:100%}
+      .package.full-bleed{padding-left:12px; padding-right:12px}
+      .explore-anim{animation:fly-sm 8s ease-in-out infinite}
+      @keyframes fly-sm{
+        0%{ transform:translateX(12vw) }
+        25%{ transform:translateX(0) }
+        50%{ transform:translateX(-12vw) }
+        75%{ transform:translateX(0) scale(1.05) }
+        100%{ transform:translateX(12vw) }
+      }
+    }
+  </style>
 </head>
 <body>
-
-<div class="container">
-    <div class="left">
-        <img src="https://i.postimg.cc/zB08hWYd/2025-08-12-01-54-19-6d4d82ca.jpg" alt="About Ritoya">
-    </div>
-
-    <div class="right">
+  <main class="wrapper">
+    <!-- من نحن -->
+    <section class="about" id="about">
+      <img class="about__img" src="https://i.postimg.cc/zB08hWYd/2025-08-12-01-54-19-6d4d82ca.jpg" alt="Ritoya Doctor Care - صورة تعريفية" />
+      <div>
         <h1>من نحن ؟</h1>
-        <p><strong>Ritoya Doctor Care</strong><br>
-        علامة رائدة في عالم العناية بالبشرة والجسم والشعر، نقدم حلولاً طبيعية وفعّالة لمشكلات الجمال اليومية.</p>
-        <p>ما يميزنا؟<br>
-        ✔️ خبرة علمية + وصفات طبيعية = نتائج مضمونة<br>
-        ✔️ نبتكر منتجات آمنة تناسب جميع أنواع البشرة والشعر<br>
-        ✔️ نركز على الجودة والشفافية (كل مكون نستخدمه له هدف واضح)<br>
-        ✔️ نؤمن بأن الجمال الحقيقي يبدأ من العناية الصحية</p>
-        <p><strong>رؤيتنا:</strong><br>
-        تحويل روتين العناية إلى تجربة فاخرة تُعيد لجسدكِ توازنه الطبيعي.</p>
-        <p><strong>لماذا نختلف؟</strong><br>
-        لأننا لا نغطي المشكلات، بل نحلها من الجذور بتركيبات مدروسة.</p>
-    </div>
-</div>
+        <p class="lead"><strong>Ritoya Doctor Care</strong><br>علامة رائدة في عالم العناية بالبشرة والجسم والشعر، نقدم حلولًا طبيعية وفعّالة لمشكلات الجمال اليومية.</p>
+        <div class="divider"></div>
+        <h3 style="margin:6px 0">ما يميزنا؟</h3>
+        <ul class="list">
+          <li>✔️ خبرة علمية + وصفات طبيعية = نتائج مضمونة</li>
+          <li>✔️ نبتكر منتجات آمنة تناسب جميع أنواع البشرة والشعر</li>
+          <li>✔️ نركز على الجودة والشفافية (كل مكوّن نستخدمه له هدف واضح)</li>
+          <li>✔️ نؤمن بأن الجمال الحقيقي يبدأ من العناية الصحية</li>
+        </ul>
+        <h3 style="margin:10px 0 6px">رؤيتنا:</h3>
+        <p class="lead">تحويل روتين العناية إلى تجربة فاخرة تُعيد لجسدكِ توازنه الطبيعي.</p>
+        <h3 style="margin:10px 0 6px">لماذا نختلف؟</h3>
+        <p class="lead" style="margin:0">لأننا لا نغطي المشكلات، بل نحلّها من الجذور بتركيبات مدروسة.</p>
+      </div>
+    </section>
 
-<div class="features">
-    <div class="feature">
+    <!-- البطاقات -->
+    <section class="features" aria-label="فئات المنتجات">
+      <article class="feature" id="hair">
         <h2>For hair</h2>
-        <img src="https://i.postimg.cc/3JtbmB65/db240958-799f-400b-ba34-8beaa35cdfa4.png" alt="Hair care">
-        <p>غذي شعرك بمكونات طبيعية مهما كان جاف او متقصف ... فالحل دائما عندنا</p>
+        <img src="https://i.postimg.cc/3JtbmB65/db240958-799f-400b-ba34-8beaa35cdfa4.png" alt="منتجات Ritoya للعناية بالشعر" />
+        <p>غذّي شعركِ بمكوّنات طبيعية مهما كان جافًا أو متقصفًا... فالحل دائمًا عندنا.</p>
         <a class="btn" href="hair.html">استكشف المزيد</a>
-    </div>
+      </article>
 
-    <div class="feature">
+      <article class="feature" id="skin">
         <h2>For skin</h2>
-        <img src="https://i.postimg.cc/MZCd8rjD/IMG-20250813-WA0005.jpg" alt="Skin care">
-        <p>انتهي من البشرة الجافة و حبوب البشرة الدهنية , منتجات طبيعية تحمي جميع انواع البشرة !</p>
+        <img src="https://i.postimg.cc/MZCd8rjD/IMG-20250813-WA0005.jpg" alt="منتجات Ritoya للعناية بالبشرة" />
+        <p>انتهِ من البشرة الجافة وحبوب البشرة الدهنية؛ منتجات طبيعية تحمي جميع أنواع البشرة!</p>
         <a class="btn" href="skin.html">استكشف المزيد</a>
-    </div>
+      </article>
 
-    <div class="feature">
+      <article class="feature" id="body">
         <h2>For body</h2>
-        <img src="https://i.postimg.cc/wvtZwyST/IMG-20250802-WA0024.jpg" alt="Body care">
-        <p>حتى الجسد يحتاج عناية , غذي جسدك بأفضل المكونات لرائحة جميلة و منعشة و جسم رطب</p>
+        <img src="https://i.postimg.cc/wvtZwyST/IMG-20250802-WA0024.jpg" alt="منتجات Ritoya للعناية بالجسم" />
+        <p>حتى الجسد يحتاج عناية؛ غذّي جسدكِ بأفضل المكوّنات لرائحة جميلة ومنعشة وجسمٍ رطب.</p>
         <a class="btn" href="body.html">استكشف المزيد</a>
-    </div>
-</div>
+      </article>
+    </section>
 
+    <!-- Package أسفل البطاقات - يسار الشاشة -->
+    <section class="package full-bleed" aria-label="باكدج">
+      <div class="package-box">package</div>
+      <p class="package-desc">ليست مجرد منتجات مجتمعة مع بعضها، بل هي التشكيلة المناسبة لكِ والتي ستحتاجينها لحل المشكلة الخاصة بكِ سواء للبشرة أو للجسد أو للشعر، كل شيء من الألف إلى الياء.</p>
+      <a class="explore-anim" href="https://yossefahmed6332.github.io/main-page/">استكشف package المناسبة</a>
+    </section>
+  </main>
 </body>
 </html>
